@@ -41,8 +41,8 @@ t[3] = 0.003  # m
 t[4] = 0.004  # m
 
 mur.fill(20000)
-mur[0] = 50000
-mur[1] = 50000
+# mur[0] = 50000
+# mur[1] = 50000
 
 for i in range(capm):
     print(i, capr1[i], t[i], mur[i])

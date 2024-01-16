@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on Wed Jan 10 12:44:23 2024
+Created on Tue Jan 16 14:28:58 2024
 
 @author: UWTUCANMag
 """
@@ -8,14 +8,15 @@ Created on Wed Jan 10 12:44:23 2024
 import numpy as np
 from scipy.linalg import lu, solve
 
+
 class MatrixSolver:
-    def __init__(self, capm, n, capr1_values, t_values, mur_values):
+    def __init__(self, capm, n, capr1, t, mur):
         self.capm = capm
         self.rank = 2 * capm
         self.n = n
-        self.capr1 = capr1_values
-        self.t = t_values
-        self.mur = mur_values
+        self.capr1 = capr1
+        self.t = t
+        self.mur = mur
         self.r = np.zeros(self.rank)
         self.a = np.zeros((self.rank, self.rank))
         self.inverse = np.zeros((self.rank, self.rank))
@@ -43,7 +44,6 @@ class MatrixSolver:
                     else:
                         m = (i + 1) // 2 - 1
                         element = (self.mur[m] + 1) / (self.mur[m] - 1)
-
                 self.a[i, j] = element
 
     def calculate_inverse(self):
@@ -59,17 +59,17 @@ class MatrixSolver:
         self.fill_matrix()
         self.calculate_inverse()
         self.calculate_sfact()
-
         return self.sfact
+
 
 if __name__ == "__main__":
     capm = 5
-    n_values = [1]
-    capr1_values = [2.28 / 2, 2.4 / 2, 2.6 / 2, 3.0 / 2, 3.5 / 2]
-    t_values = [0.002, 0.002, 0.003, 0.003, 0.004]
-    mur_values = [20000] * capm
+    n = 1
+    capr1 = np.array([2.26 / 2, 2.4 / 2, 2.6 / 2, 3.0 / 2, 3.5 / 2])
+    t = np.array([0.002, 0.002, 0.003, 0.003, 0.004])
+    mur = np.full(capm, 20000)
 
-    matrix_solver = MatrixSolver(capm, n_values, capr1_values, t_values, mur_values)
+    matrix_solver = MatrixSolver(capm, n, capr1, t, mur)
     sfact_result = matrix_solver.solve()
 
     print(f"The total shielding factor: {sfact_result}")
