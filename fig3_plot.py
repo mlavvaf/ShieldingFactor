@@ -8,6 +8,7 @@ Created on Wed Jan 10 15:33:23 2024
 import numpy as np
 from scipy.linalg import lu, solve
 import matplotlib.pyplot as plt
+import os
 
 
 class MatrixSolver:
@@ -122,5 +123,8 @@ if __name__ == "__main__":
     plt.legend(legend_handles, legend_labels)
     plt.title(
         'The total shielding factor of four concentric spherical shells')
-    plt.savefig('SphericalShells.png', bbox_inches='tight', dpi=360)
     plt.show()
+    output_folder = "Figures"
+    os.makedirs(output_folder, exist_ok=True)
+    output_file_path = os.path.join(output_folder, "SphericalShells.png")
+    plt.savefig(output_file_path, dpi=360)

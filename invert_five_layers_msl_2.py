@@ -7,7 +7,8 @@ Created on Tue Jan 16 14:28:58 2024
 
 import numpy as np
 from scipy.linalg import lu, solve
-
+import matplotlib.pyplot as plt
+import os
 
 class MatrixSolver:
     def __init__(self, capm, n, capr1, t, mur):
@@ -67,9 +68,34 @@ if __name__ == "__main__":
     n = 1
     capr1 = np.array([2.26 / 2, 2.4 / 2, 2.6 / 2, 3.0 / 2, 3.5 / 2])
     t = np.array([0.002, 0.002, 0.003, 0.003, 0.004])
-    mur = np.full(capm, 20000)
 
-    matrix_solver = MatrixSolver(capm, n, capr1, t, mur)
-    sfact_result = matrix_solver.solve()
+    # Different values of mur
+    mur_values = np.linspace(20000, 50000, 300)
 
-    print(f"The total shielding factor: {sfact_result}")
+    # Plotting setup
+    plt.figure(figsize=(8, 6))
+
+    for mur_value in mur_values:
+        mur = np.array([mur_value] * capm)
+
+        matrix_solver = MatrixSolver(capm, n, capr1, t, mur)
+        sfact_result = matrix_solver.solve()
+
+        # print(f"For mur = {mur_value}, The total shielding factor: {sfact_result}")
+
+        # Plotting results
+        plt.plot(mur_value, sfact_result, 'o', markersize=2, color='navy')
+    legend_labels = ['mur']
+    legend_handles = [plt.Line2D([0], [0], marker='o', color='w',
+                    markerfacecolor='navy', markersize=5)]
+    plt.xlabel('mur')
+    plt.ylabel('Total Shielding Factor')
+    plt.legend(legend_handles, legend_labels)
+    plt.grid()
+    plt.title('Total Shielding Factor vs mur - 5 layers')
+    plt.show()
+    
+    output_folder = "Figures"
+    os.makedirs(output_folder, exist_ok=True)
+    output_file_path = os.path.join(output_folder, "DifferentMurCyl5layer.png")
+    plt.savefig(output_file_path, dpi=360)
