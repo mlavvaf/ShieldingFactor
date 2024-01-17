@@ -72,22 +72,23 @@ if __name__ == "__main__":
     capm_i_4 = 4
     capr1_i_4 = np.array([2.4 / 2, 2.6 / 2, 3.0 / 2, 3.5 / 2])
     t_4 = np.array([0.002, 0.003, 0.003, 0.004])
-    mur_4 = np.array([40000] * capm_i_4)
+    # mur_4 = np.array([40000] * capm_i_4)
 
     capm_i_5 = 5
     capr1_i_5 = np.array([2.26 / 2, 2.4 / 2, 2.6 / 2, 3.0 / 2, 3.5 / 2])
     t_5 = np.array([0.002, 0.002, 0.003, 0.003, 0.004])
-    mur_5 = np.array([40000] * capm_i_5)
-    
+    # mur_5 = np.array([40000] * capm_i_5)
+
     capm_o_4 = 4
     capr1_o_4 = np.sqrt(2) * np.array([2.4 / 2, 2.6 / 2, 3.0 / 2, 3.5 / 2])
     t_4 = np.array([0.002, 0.003, 0.003, 0.004])
-    mur_4 = np.array([40000] * capm_o_4)
+    # mur_4 = np.array([40000] * capm_o_4)
 
     capm_o_5 = 5
-    capr1_o_5 = np.sqrt(2) * np.array([2.26 / 2, 2.4 / 2, 2.6 / 2, 3.0 / 2, 3.5 / 2])
+    capr1_o_5 = np.sqrt(
+        2) * np.array([2.26 / 2, 2.4 / 2, 2.6 / 2, 3.0 / 2, 3.5 / 2])
     t_5 = np.array([0.002, 0.002, 0.003, 0.003, 0.004])
-    mur_5 = np.array([40000] * capm_o_5)
+    # mur_5 = np.array([40000] * capm_o_5)
 
     # Plotting setup
     plt.figure(figsize=(8, 6))
@@ -101,7 +102,7 @@ if __name__ == "__main__":
     mur_values_5 = np.linspace(20000, 45000, 100)
     plt.plot(mur_values_5, [MatrixSolver(capm_i_5, 1, capr1_i_5, t_5, np.array(
         [mur_value] * capm_i_5)).solve() for mur_value in mur_values_5], 'o', markersize=4, color='peru')
-    
+
     # Plot for capm=4 (using navy color)
     plt.plot(mur_values_4, [MatrixSolver(capm_o_4, 1, capr1_o_4, t_4, np.array(
         [mur_value] * capm_o_4)).solve() for mur_value in mur_values_4], 'o', markersize=4, color='darkorchid')
@@ -110,11 +111,11 @@ if __name__ == "__main__":
     plt.plot(mur_values_5, [MatrixSolver(capm_o_5, 1, capr1_o_5, t_5, np.array(
         [mur_value] * capm_o_5)).solve() for mur_value in mur_values_5], 'o', markersize=4, color='olivedrab')
 
-
     plt.xlabel('mur')
     plt.ylabel('Total Shielding Factor')
     plt.yscale('log')
-    plt.legend(['4 layers - inscribed', '5 layers - inscribed', '4 layers - circumscribed', '5 layers - circumscribed'])
+    plt.legend(['4 layers - inscribed', '5 layers - inscribed',
+               '4 layers - circumscribed', '5 layers - circumscribed'])
     plt.grid()
     plt.title(
         'Total Shielding Factor vs mur of a spherical MSR')

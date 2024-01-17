@@ -76,22 +76,22 @@ if __name__ == "__main__":
     capm_i_4 = 4
     capr1_i_4 = np.array([2.4 / 2, 2.6 / 2, 3.0 / 2, 3.5 / 2])
     t_4 = np.array([0.002, 0.003, 0.003, 0.004])
-    mur_4 = np.array([40000] * capm_i_4)
+    # mur_i_4 = np.array([40000] * capm_i_4)
 
     capm_i_5 = 5
     capr1_i_5 = np.array([2.26 / 2, 2.4 / 2, 2.6 / 2, 3.0 / 2, 3.5 / 2])
     t_5 = np.array([0.002, 0.002, 0.003, 0.003, 0.004])
-    mur_5 = np.array([40000] * capm_i_5)
+    # mur_i_5 = np.array([40000] * capm_i_5)
     
     capm_o_4 = 4
     capr1_o_4 = np.sqrt(2) * np.array([2.4 / 2, 2.6 / 2, 3.0 / 2, 3.5 / 2])
     t_4 = np.array([0.002, 0.003, 0.003, 0.004])
-    mur_4 = np.array([40000] * capm_o_4)
+    # mur_o_4 = np.array([40000] * capm_o_4)
 
     capm_o_5 = 5
     capr1_o_5 = np.sqrt(2) * np.array([2.26 / 2, 2.4 / 2, 2.6 / 2, 3.0 / 2, 3.5 / 2])
     t_5 = np.array([0.002, 0.002, 0.003, 0.003, 0.004])
-    mur_5 = np.array([40000] * capm_o_5)
+    # mur_o_5 = np.array([40000] * capm_o_5)
 
     # Plotting setup
     plt.figure(figsize=(8, 6))
