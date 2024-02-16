@@ -63,6 +63,7 @@ class MatrixSolver:
     def calculate_sfact(self):
         summat = np.sum(self.inverse, axis=1).sum()
         self.sfact = 1.0 / (1.0 + summat)
+        # print(f"SF {self.sfact}")
 
     def solve(self):
         self.define_geometry()

@@ -38,9 +38,12 @@ t[1] = 0.003  # m
 t[2] = 0.003  # m
 t[3] = 0.004  # m
 
-for i in range(capm):
+mur[0] = 50000
+i = 1
+while i < capm:
     mur[i] = 20000
-# mur[0] = 50000
+    i += 1
+        
 
 for i in range(capm):
     print(f"{i} {capr1[i]} {t[i]} {mur[i]}")
