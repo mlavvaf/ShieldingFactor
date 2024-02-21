@@ -19,8 +19,11 @@ class MatrixSolver:
         self.t = t
 
     def define_geometry(self):
-
-        self.mur = [self.m1] + [self.m2] * (self.capm - 1)
+        
+        if self.capm == 4:
+            self.mur = [self.m1] + [self.m2] * (self.capm - 1)
+        else:
+            self.mur = self.mur = [self.m1] + [self.m1] + [self.m2] * (self.capm - 2)
 
         j = 0
         for i in range(self.capm):
@@ -103,11 +106,11 @@ if __name__ == "__main__":
 
     plt.plot(m2_range, [MatrixSolver(capm_i_4, 1, capr1_i_4, t_4, m1_range, m2_range).solve() for m1_range, m2_range in zip(m1_range, m2_range)],
              'o', markersize=4, color='steelblue')
-
-    plt.plot(m2_range, [MatrixSolver(capm_o_4, 1, capr1_o_4, t_4, m1_range, m2_range).solve() for m1_range, m2_range in zip(m1_range, m2_range)],
+    
+    plt.plot(m2_range, [MatrixSolver(capm_i_5, 1, capr1_i_5, t_5, m1_range, m2_range).solve() for m1_range, m2_range in zip(m1_range, m2_range)],
              'o', markersize=4, color='peru')
 
-    plt.plot(m2_range, [MatrixSolver(capm_i_5, 1, capr1_i_5, t_5, m1_range, m2_range).solve() for m1_range, m2_range in zip(m1_range, m2_range)],
+    plt.plot(m2_range, [MatrixSolver(capm_o_4, 1, capr1_o_4, t_4, m1_range, m2_range).solve() for m1_range, m2_range in zip(m1_range, m2_range)],
              'o', markersize=4, color='darkorchid')
 
     plt.plot(m2_range, [MatrixSolver(capm_o_5, 1, capr1_o_5, t_5, m1_range, m2_range).solve() for m1_range, m2_range in zip(m1_range, m2_range)],
@@ -116,13 +119,13 @@ if __name__ == "__main__":
     plt.xlabel('m1')
     plt.ylabel('Total Shielding Factor')
     plt.yscale('log')
-    plt.legend(['4 layers - inscribed', '4 layers - circumscribed',
-               '5 layers - inscribed', '5 layers - circumscribed'])
+    plt.legend(['4 layers - inscribed', '5 layers - inscribed',
+               '4 layers - circumscribed', '5 layers - circumscribed'])
     plt.grid()
-    plt.title('Total Shielding Factor vs m1 of a spherical MSR')
+    plt.title('Total Shielding Factor vs mur1 of a spherical MSR')
     plt.show()
 
     output_folder = "Figures"
     os.makedirs(output_folder, exist_ok=True)
-    output_file_path = os.path.join(output_folder, "SF_vs_m1_sphered.png")
+    output_file_path = os.path.join(output_folder, "SF_vs_m1_sphere_2m_2l.png")
     plt.savefig(output_file_path, dpi=360)
